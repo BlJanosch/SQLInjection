@@ -18,11 +18,30 @@ class Form1(Form1Template):
       key1_value = query_params.get('AccountNo', [None])[0] 
       ResultPage = open_form('ResultPage')
       ResultPage.text_area_1.text = anvil.server.call('get_data_accountno', key1_value)
+  
+
+    if (anvil.server.call('get_sessiondata', 'Level1') == 'true'):
+      self.check_box_2.checked = True
+    else:
+      self.check_box_2.checked = False
+    if (anvil.server.call('get_sessiondata', 'Level2') == 'true'):
+      self.check_box_3.checked = True
+    else:
+      self.check_box_3.checked = False
+    if (anvil.server.call('get_sessiondata', 'Level3') == 'true'):
+      self.check_box_4.checked = True
+    else:
+      self.check_box_4.checked = False
 
   def button_1_click(self, **event_args):
     username = self.text_box_1.text
     password = self.text_box_2.text
     sqlinjection = self.check_box_1.checked
     ResultPage = open_form('ResultPage')
-    ResultPage.text_area_1.text = anvil.server.call('login', username, password, sqlinjection) 
-    
+    ResultPage.text_area_1.text = anvil.server.call('login', username, password, sqlinjection)
+
+  def button_2_click(self, **event_args):
+    anvil.server.call('set_sessiondata', 'Level1', 'false')
+    anvil.server.call('set_sessiondata', 'Level2', 'false')
+    anvil.server.call('set_sessiondata', 'Level3', 'false')
+    open_form("Form1")

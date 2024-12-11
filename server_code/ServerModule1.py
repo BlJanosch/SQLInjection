@@ -27,6 +27,7 @@ def login(username, password, sqlinjection):
        raise ValueError("Data is empty")
      elif (username in data[0]):
        return "Task completed!"
+     set_sessiondata("Level1", "true")
      return "Login successfull but AccountNo not passed"
    except:
      return f"{query} \nLogin nicht möglich"
@@ -46,7 +47,12 @@ def get_data_accountno(accountno):
    querybalance = f"SELECT balance FROM Balances WHERE AccountNo = {accountno}"
    queryusername = f"SELECT username FROM Users WHERE AccountNo = {accountno}"
    try:
-    return f"Willkommen {list(cursor.execute(queryusername))}! Dein Kontostand ist: {list(cursor.execute(querybalance))}"
+    returnvalue = f"Willkommen {list(cursor.execute(queryusername))}! Dein Kontostand ist: {list(cursor.execute(querybalance))}"
+    if (returnvalue == "Willkommen [('davidProf',), ('frodo',), ('glorfindel',)]! Dein Kontostand ist: [(5000,), (1500,), (7500,)]"):
+      set_sessiondata("Level2", "true")
+    elif (returnvalue == "Willkommen [('kannNichtCoden',)]! Dein Kontostand ist: [('kannNichtCoden',)]"):
+      set_sessiondata("Level3", "true")
+    return returnvalue
    except: return ""
 
 @anvil.server.callable

@@ -33,6 +33,23 @@ components:
   name: navbar_links
   properties: {}
   type: FlowPanel
+- layout_properties: {slot: top-left-btn}
+  name: check_box_2
+  properties: {enabled: false, text: Level 1}
+  type: CheckBox
+- layout_properties: {slot: top-left-btn}
+  name: check_box_3
+  properties: {enabled: false, text: Level 2}
+  type: CheckBox
+- layout_properties: {slot: top-left-btn}
+  name: check_box_4
+  properties: {enabled: false, text: Level 3}
+  type: CheckBox
+- event_bindings: {click: button_2_click}
+  layout_properties: {slot: top-left-btn}
+  name: button_2
+  properties: {text: Reset}
+  type: Button
 container:
   properties: {html: '@theme:standard-page.html'}
   type: HtmlTemplate
