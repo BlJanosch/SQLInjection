@@ -39,6 +39,8 @@ class Form1(Form1Template):
     sqlinjection = self.check_box_1.checked
     ResultPage = open_form('ResultPage')
     ResultPage.text_area_1.text = anvil.server.call('login', username, password, sqlinjection)
+    if (ResultPage.text_area_1.text == "Login successfull but AccountNo not passed"):
+      ResultPage.check_box_1.checked = True
 
   def button_2_click(self, **event_args):
     anvil.server.call('set_sessiondata', 'Level1', 'false')
