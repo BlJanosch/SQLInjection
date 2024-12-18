@@ -14,11 +14,11 @@ components:
   type: CheckBox
 - layout_properties: {grid_position: 'PQSJHX,RWQXRJ'}
   name: check_box_2
-  properties: {align: center, text: Level 2}
+  properties: {align: center, enabled: false, text: Level 2}
   type: CheckBox
 - layout_properties: {grid_position: 'OBUOMM,LNBUAZ'}
   name: check_box_3
-  properties: {align: center, text: Level 3}
+  properties: {align: center, enabled: false, text: Level 3}
   type: CheckBox
 container: {type: ColumnPanel}
 is_package: true
