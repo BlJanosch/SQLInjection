@@ -13,6 +13,19 @@ class ResultPage(ResultPageTemplate):
     anvil.server.call('set_sessiondata', 'Logout', 'false')
     anvil.server.call('set_sessiondata', 'last_opened_form', 'resultpage')
 
+    if (anvil.server.call('get_sessiondata', 'Level1') == 'true'):
+      self.check_box_1.checked = True
+    else:
+      self.check_box_1.checked = False
+    if (anvil.server.call('get_sessiondata', 'Level2') == 'true'):
+      self.check_box_2.checked = True
+    else:
+      self.check_box_2.checked = False
+    if (anvil.server.call('get_sessiondata', 'Level3') == 'true'):
+      self.check_box_3.checked = True
+    else:
+      self.check_box_3.checked = False
+
   def button_1_click(self, **event_args):
     anvil.server.call('set_sessiondata', 'Logout', 'true')
     open_form('Form1')
