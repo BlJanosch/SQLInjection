@@ -19,14 +19,19 @@ import urllib.parse
 def login(username, password, sqlinjection):
    conn = sqlite3.connect(data_files["database.db"])
    cursor = conn.cursor()
-   query = f"SELECT username FROM Users WHERE username = '{username}' AND password = '{password}'"
+   query = f"SELECT username, AccountNo FROM Users WHERE username = '{username}' AND password = '{password}'"
    print(query)
    try:
-     data = list(cursor.execute(query)) if sqlinjection else list(cursor.execute("SELECT username FROM Users WHERE username = ? AND password = ?", (username, password)))
+     data = list(cursor.execute(query)) if sqlinjection else list(cursor.execute("SELECT username, AccountNo FROM Users WHERE username = ? AND password = ?", (username, password)))
+     print(username)
+     print(data[0][0])
+     print(data[0][1])
      if (data == []):
        raise ValueError("Data is empty")
-     elif (username in data[0]):
+     elif ('davidProf' == data[0][0]):
        return "Task completed!"
+     elif (username == data[0][0]):
+       return get_data_accountno(data[0][1])
      set_sessiondata("Level1", "true")
      set_sessiondata("Login", "true")
      return "Login successfull but AccountNo not passed"
