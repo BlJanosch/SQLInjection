@@ -12,13 +12,17 @@ class Form1(Form1Template):
     self.init_components(**properties)
     
     if anvil.server.call('get_sessiondata', 'last_opened_form') == "resultpage" and anvil.server.call('get_sessiondata', 'Logout') != "true":
-      self.init_components(**properties)
-      url = anvil.js.window.location.href
-      query_params = anvil.server.call('get_query_params', url)
-      key1_value = query_params.get('AccountNo', [None])[0] 
-      result = anvil.server.call('get_data_accountno', key1_value)
-      ResultPage = open_form('ResultPage')
-      ResultPage.text_area_1.text = result
+      if (anvil.server.call('get_sessiondata', 'Login') == 'true'):
+        self.init_components(**properties)
+        url = anvil.js.window.location.href
+        query_params = anvil.server.call('get_query_params', url)
+        key1_value = query_params.get('AccountNo', [None])[0] 
+        result = anvil.server.call('get_data_accountno', key1_value)
+        ResultPage = open_form('ResultPage')
+        ResultPage.text_area_1.text = result
+      else:
+        ResultPage = open_form('ResultPage')
+        ResultPage.text_area_1.text = 'Nicht angemeldet!'
   
 
     if (anvil.server.call('get_sessiondata', 'Level1') == 'true'):

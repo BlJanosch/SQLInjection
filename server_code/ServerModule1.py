@@ -28,8 +28,10 @@ def login(username, password, sqlinjection):
      elif (username in data[0]):
        return "Task completed!"
      set_sessiondata("Level1", "true")
+     set_sessiondata("Login", "true")
      return "Login successfull but AccountNo not passed"
    except:
+     set_sessiondata("Login", "false")
      return f"{query} \nLogin nicht möglich"
 
 @anvil.server.callable
