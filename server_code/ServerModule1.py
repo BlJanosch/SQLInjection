@@ -28,9 +28,12 @@ def login(username, password, sqlinjection):
      print(data[0][1])
      if (data == []):
        raise ValueError("Data is empty")
-     elif ('davidProf' == data[0][0]):
+     elif ('davidProf' == data[0][0] and len(data) == 1):
+       set_sessiondata("Level1", "true")
+       set_sessiondata("Level2", "true")
+       set_sessiondata("Level3", "true")
        return "Task completed!"
-     elif (username == data[0][0]):
+     elif (username == data[0][0] and len(data) == 1):
        return get_data_accountno(data[0][1])
      set_sessiondata("Level1", "true")
      set_sessiondata("Login", "true")
