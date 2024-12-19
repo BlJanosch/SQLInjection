@@ -62,6 +62,8 @@ def get_data_accountno(accountno):
       set_sessiondata("Level2", "true")
     elif (returnvalue == "Willkommen [('kannNichtCoden',)]! Dein Kontostand ist: [('kannNichtCoden',)]"):
       set_sessiondata("Level3", "true")
+    elif (returnvalue == "Willkommen []! Dein Kontostand ist: []"):
+      return f"User not found\n{queryusername}\n{querybalance}"
     return returnvalue
    except: return ""
 
