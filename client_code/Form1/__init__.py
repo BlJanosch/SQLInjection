@@ -12,6 +12,7 @@ class Form1(Form1Template):
     self.init_components(**properties)
     
     if anvil.server.call('get_sessiondata', 'last_opened_form') == "resultpage" and anvil.server.call('get_sessiondata', 'Logout') != "true":
+      print(anvil.server.call('get_sessiondata', 'Login'))
       if (anvil.server.call('get_sessiondata', 'Login') == 'true'):
         self.init_components(**properties)
         url = anvil.js.window.location.href
