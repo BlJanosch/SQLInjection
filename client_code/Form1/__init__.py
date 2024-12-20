@@ -13,8 +13,8 @@ class Form1(Form1Template):
     
     if anvil.server.call('get_sessiondata', 'last_opened_form') == "resultpage" and anvil.server.call('get_sessiondata', 'Logout') != "true":
       print(anvil.server.call('get_sessiondata', 'Login'))
+      print("Login Data")
       if (anvil.server.call('get_sessiondata', 'Login') == 'true'):
-        self.init_components(**properties)
         url = anvil.js.window.location.href
         query_params = anvil.server.call('get_query_params', url)
         key1_value = query_params.get('AccountNo', [None])[0] 
